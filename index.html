@@ -22,7 +22,7 @@
             date: Date.now()
             };
 
-            var sock = new WebSocket("wss://wcis-helmuth.github.io:5003");
+            var sock = new WebSocket("wss://wcis-helmuth.github.io");
             sock.onopen = function(event) {
                 alert('Socket connected successfully');
                 setTimeout(function() {
