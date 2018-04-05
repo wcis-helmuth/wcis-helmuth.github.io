@@ -22,7 +22,7 @@
             date: Date.now()
             };
 
-            var sock = new WebSocket("wss://10.0.0.178:5003");
+            var sock = new WebSocket("ws://10.0.0.178:5003");
             sock.onopen = function(event) {
                 alert('Socket connected successfully');
                 setTimeout(function() {
