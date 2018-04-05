@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+
+    </head>
+
+    <body>
+        <script>
+
+            document.getElementById("button1");
+
+
+            var msg = {
+            lat: "0",
+            long: "0",
+            type: "message",
+            text: "Walder Helmuth",
+            id:   "2",
+            date: Date.now()
+            };
+
+            var sock = new WebSocket("ws://10.0.0.178:5003");
+            sock.onopen = function(event) {
+                alert('Socket connected successfully');
+                setTimeout(function() {
+                sock.send(JSON.stringify(msg));
+                //sock.send(JSON.stringify({"x":5,"y":6}));
+                //sock.send("1");
+
+                }, 100);
+                
+
+            };
+
+            function sendPosition(position) {
+                msg.lat = position.coords.latitude;
+                sock.send(JSON.stringify(msg));
+            }
+
+            sock.onmessage = function(event) {
+                console.log(event);
+            }
+
+            function getLocation() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(sendPosition);
+                } 
+            }
+
+
+
+
+
+        </script>
+        <button id="button1" onclick="getLocation()">Click me</button>
+    </body>
+</html>
